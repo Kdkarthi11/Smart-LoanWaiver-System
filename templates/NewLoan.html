@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>Loan Verification System - Active Users</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --sidebar-width: 260px;
+            --header-height: 60px;
+            --primary-color: #15295E;
+            --secondary-color: #1C3E94;
+            --accent-color: #C8972C;
+            --text-color: #2D3748;
+            --light-bg: #F8FAFC;
+            --border-color: #E2E8F0;
+        }
+
+        /* Layout */
+        .wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--primary-color);
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .user-info {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+            padding: 10px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-menu {
+            padding: 1rem 0;
+        }
+
+        .sidebar-menu .nav-link {
+            color: rgba(255, 255, 255, 0.9);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            margin: 4px 16px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .sidebar-menu .nav-link:hover,
+        .sidebar-menu .nav-link.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .sidebar-menu .nav-link i {
+            width: 20px;
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            padding: 20px;
+            background: var(--light-bg);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .main-header {
+            background: white;
+            padding: 1rem 2rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Table Styles */
+        .table-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .table {
+            margin-bottom: 0;
+        }
+
+        .table thead {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .table thead th {
+            padding: 15px;
+            font-weight: 500;
+            border: none;
+            text-align: center;
+        }
+
+        .table tbody td {
+            padding: 12px 15px;
+            vertical-align: middle;
+            border-bottom: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .table tbody tr:hover {
+            background: rgba(28, 62, 148, 0.05);
+        }
+
+        .btn-new-loan {
+            background: var(--primary-color);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-new-loan:hover {
+            background: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb-custom {
+            background: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                margin-left: -var(--sidebar-width);
+            }
+
+            .sidebar.active {
+                margin-left: 0;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .mobile-toggle {
+                display: block !important;
+            }
+
+            .table-responsive {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <img src="https://seekvectors.com/files/download/India%20Government-02.jpg" style="width:50px;height:50px;border-radius:50%;"><span class="logo-text">Loan Verification</span>
+                </div>
+            </div>
+
+            <div class="sidebar-menu">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/AdminHome">
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/NewUser">
+                            <i class="fas fa-user-plus"></i>
+                            <span>New User</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/NewLoan">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                            <span>New Loan</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ALoanInfo">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Loan Info</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/LoanWaiver">
+                            <i class="fas fa-hand-holding-usd"></i>
+                            <span>Loan Waiver</span>
+                        </a>
+                    </li>
+                    <li class="nav-item mt-auto">
+                        <a class="nav-link text-danger" href="/">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="main-header d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">Active User Information</h4>
+                <div class="d-flex align-items-center">
+                    <div class="text-muted me-3">
+                        <i class="far fa-clock me-1"></i>
+                        {{current_time}}
+                    </div>
+                    <button class="btn btn-light d-md-none mobile-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Breadcrumb -->
+            <div class="breadcrumb-custom">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="/"><i class="fas fa-home"></i> Home</a>
+                        </li>
+                        <li class="breadcrumb-item active">Active Users</li>
+                    </ol>
+                </nav>
+            </div>
+
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endif %}
+            {% endwith %}
+
+            <!-- Users Table -->
+            <div class="table-card">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Mobile</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Account No</th>
+                                <th>Username</th>
+                                <th>Aadhar</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item1 in data %}
+                            <tr>
+                                <td>{{item1[1]}}</td>
+                                <td>{{item1[2]}}</td>
+                                <td>{{item1[3]}}</td>
+                                <td>{{item1[4]}}</td>
+                                <td>{{item1[5]}}</td>
+                                <td>{{item1[6]}}</td>
+                                <td>{{item1[7]}}</td>
+                                <td>{{item1[12]}}</td>
+                                <td>
+                                    <a href="newloan1?id={{item1[0]}}" class="btn-new-loan">
+                                        <i class="fas fa-plus-circle me-1"></i>New Loan
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="text-center py-3 mt-4">
+                <p class="mb-0">All rights reserved | Design by Loan Verification System</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        // Mobile sidebar toggle
+        document.querySelector('.mobile-toggle')?.addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        });
+
+        // Original URL hiding script
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+</body>
+
+</html>

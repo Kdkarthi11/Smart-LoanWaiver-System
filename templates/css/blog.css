@@ -1,0 +1,477 @@
+:root {
+    --primary-color: #00338D;
+    --secondary-color: #FF9933;
+    --accent-color: #138808;
+    --text-color: #333;
+    --light-bg: #f8f9fa;
+    --border-color: #ddd;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --footer-bg: #1a1a1a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background: var(--light-bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Styles */
+.gov-header {
+    background: #fff;
+    box-shadow: 0 2px 10px var(--shadow-color);
+    padding: 12px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    min-height: 40px;
+}
+
+.gov-logo {
+    width: 30px;
+    height: auto;
+    margin-right: 15px;
+    object-fit: contain;
+}
+
+.header-text {
+    flex: 1;
+}
+
+.header-text h1 {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    margin-bottom: 3px;
+    font-weight: 600;
+}
+
+.header-text h2 {
+    color: var(--accent-color);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.language-select select {
+    padding: 6px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    background-color: white;
+    color: var(--text-color);
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.language-select select:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(0, 51, 141, 0.2);
+}
+
+.language-select select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(0, 51, 141, 0.3);
+}
+
+/* Main Welcome Section */
+.welcome-section {
+    padding-top: 80px;
+    min-height: calc(100vh - 160px);
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.welcome-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    width: 100%;
+}
+
+.welcome-content {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px var(--shadow-color);
+    padding: 40px;
+    text-align: center;
+    animation: fadeInUp 0.8s ease;
+    transition: opacity 0.3s ease;
+}
+
+.main-emblem {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.center-emblem {
+    width: 50px;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto;
+    animation: fadeIn 1s ease;
+}
+
+.welcome-text h1 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.welcome-text p {
+    color: #666;
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto 30px;
+}
+
+.feature-list {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--primary-color);
+    padding: 12px 20px;
+    background: rgba(0, 51, 141, 0.05);
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 51, 141, 0.1);
+}
+
+.feature-item i {
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+}
+
+.auth-options {
+    margin-top: 40px;
+}
+
+.auth-options h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.auth-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.auth-btn {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 250px;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.3),
+        rgba(255, 255, 255, 0.1)
+    );
+    transition: left 0.7s ease;
+}
+
+.auth-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.auth-btn:hover::before {
+    left: 100%;
+}
+
+.user-btn {
+    background: var(--accent-color);
+}
+
+.admin-btn {
+    background: var(--primary-color);
+}
+
+.auth-btn i {
+    font-size: 1.8rem;
+}
+
+.btn-text {
+    text-align: left;
+}
+
+.btn-text span {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.btn-text small {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Footer Styles */
+.gov-footer {
+    background: var(--footer-bg);
+    color: white;
+    padding: 25px 0;
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.footer-links {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.footer-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--secondary-color);
+    transition: width 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--secondary-color);
+}
+
+.footer-links a:hover::after {
+    width: 100%;
+}
+
+.footer-info p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin: 5px 0;
+}
+
+/* Language switching styles */
+.language-switching {
+    position: relative;
+}
+
+.language-switching::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--primary-color);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.language-switching.loading::after {
+    opacity: 1;
+}
+
+/* RTL support for Tamil */
+[lang="ta"] {
+    font-family: 'Noto Sans Tamil', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .welcome-content {
+        padding: 30px;
+    }
+
+    .auth-buttons {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .gov-logo {
+        width: 20px;
+    }
+
+    .header-text h1 {
+        font-size: 1.1rem;
+    }
+
+    .header-text h2 {
+        font-size: 0.9rem;
+    }
+
+    .center-emblem {
+        width: 40px;
+    }
+
+    .welcome-text h1 {
+        font-size: 1.6rem;
+    }
+
+    .welcome-text p {
+        font-size: 1rem;
+    }
+
+    .feature-list {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .auth-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .auth-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-container {
+        padding: 20px;
+    }
+
+    .welcome-content {
+        padding: 20px;
+    }
+
+    .auth-btn {
+        padding: 15px 20px;
+    }
+
+    .feature-item {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Add this to your welcome.css file */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600&display=swap');
+
+/* Update the RTL support section */
+[lang="ta"] {
+    font-family: 'Noto Sans Tamil', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+[lang="hi"] {
+    font-family: 'Noto Sans Devanagari', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Add this to ensure proper rendering of Hindi text */
+.language-select select option[value="hi"] {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+}

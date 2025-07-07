@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Waiver Circular</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background: #fdfdfd;
+            margin: 0;
+            padding: 20px;
+            color: #000;
+        }
+        .document {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #000;
+            background: #fff;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .header img {
+            width: 100px;
+            height: auto;
+            margin-right: 20px;
+        }
+        .header-text {
+            text-align: center;
+        }
+        .header-text h1 {
+            margin: 0;
+            font-size: 20px;
+        }
+        .header-text p {
+            margin: 2px 0;
+        }
+        .question {
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        .answer {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .signature {
+            margin-top: 50px;
+            text-align: right;
+            font-weight: bold;
+        }
+        .download-btn {
+            display: block;
+            text-align: center;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .download-btn:hover {
+            background: #0056b3;
+        }
+        @media print {
+            .download-btn {
+                display: none;
+            }
+            body {
+                margin: 0;
+                background: none;
+            }
+            .document {
+                border: none;
+                margin: 0;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+
+<div class="document">
+    <div class="header">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/1024px-Emblem_of_India.svg.png" alt="India Emblem" />
+        <div class="header-text">
+            <h1>Government of India</h1>
+            <p>Ministry of Finance</p>
+            <p>Department of Financial Services</p>
+            <h2>Loan Waiver Circular</h2>
+        </div>
+    </div>
+
+    <div class="question">Subject: Education Loan Waiver Scheme</div>
+
+    <div class="answer">
+        <p><strong>Issued By:</strong> Higher Education Financial Authority</p>
+        <p><strong>Objective:</strong> To provide financial relief to students from economically weaker sections by waiving off outstanding education loan amounts.</p>
+        <p><strong>Eligibility Criteria:</strong></p>
+        <ul>
+            <li>Loan sanctioned before January 1, 2023.</li>
+            <li>Borrower’s family annual income should be below ₹8,00,000.</li>
+            <li>Loan used exclusively for higher education purposes.</li>
+        </ul>
+        <p><strong>Benefits:</strong></p>
+        <ul>
+            <li>Complete or partial loan waiver depending on eligibility.</li>
+            <li>Reduced debt burden on students and families.</li>
+            <li>Opportunity to rebuild credit score post-waiver.</li>
+        </ul>
+        <p><strong>Application Process:</strong></p>
+        <ul>
+            <li>Submit waiver request to your lending bank along with supporting income and loan documents.</li>
+            <li>The bank will verify the eligibility and forward the application to the State Waiver Committee.</li>
+            <li>Sanction letter for waiver will be issued upon approval.</li>
+        </ul>
+        <p><strong>Note:</strong> Students meeting these criteria must apply through their lending bank before the deadline specified by the authority.</p>
+    </div>
+
+    <div id="signature" class="signature">
+        (Authorized Signatory)<br>
+        Higher Education Financial Authority
+    </div>
+</div>
+
+<button class="download-btn" onclick="window.print()">Download Circular as PDF</button>
+
+<script>
+    let scheme = "crop";  // Change to: "education", "crop", "equipment"
+
+    const container = document.querySelector('.document');
+    const signature = document.getElementById('signature');
+
+    if (scheme === "crop") {
+        container.querySelector('.question').innerText = "Subject: Crop Loan Waiver Scheme";
+        container.querySelector('.answer').innerHTML = `
+            <p><strong>Issued By:</strong> Department of Agriculture and Farmers Welfare</p>
+            <p><strong>Objective:</strong> To support farmers facing financial distress by waiving loans used for seasonal crop cultivation.</p>
+            <p><strong>Eligibility Criteria:</strong></p>
+            <ul>
+                <li>Loan taken for seasonal crops only.</li>
+                <li>Repayment due on or before March 31, 2024.</li>
+                <li>Must be a registered farmer with valid documentation.</li>
+            </ul>
+            <p><strong>Benefits:</strong></p>
+            <ul>
+                <li>Waiver of outstanding principal and interest for qualifying farmers.</li>
+                <li>Enhanced credit eligibility for future farming loans.</li>
+            </ul>
+            <p><strong>Application Process:</strong></p>
+            <ul>
+                <li>Contact your bank with loan documents and farmer registration proof.</li>
+                <li>Applications will be verified and approved at district level before sanction.</li>
+            </ul>
+            <p><strong>Note:</strong> Farmers must submit waiver claims through banks before the official closing date.</p>
+        `;
+        signature.innerHTML = `(Authorized Signatory)<br>Department of Agriculture and Farmers Welfare`;
+    } else if (scheme === "equipment") {
+        container.querySelector('.question').innerText = "Subject: Agricultural Equipment Loan Waiver Scheme";
+        container.querySelector('.answer').innerHTML = `
+            <p><strong>Issued By:</strong> Rural Development Loan Authority</p>
+            <p><strong>Objective:</strong> To reduce equipment loan stress on farmers and promote modernization of farming tools.</p>
+            <p><strong>Eligibility Criteria:</strong></p>
+            <ul>
+                <li>Loan sanctioned between 2020 to 2024.</li>
+                <li>Loan amount should not exceed ₹5,00,000.</li>
+                <li>Funds used specifically for farm equipment purchase.</li>
+            </ul>
+            <p><strong>Benefits:</strong></p>
+            <ul>
+                <li>Loan waiver covers principal and eligible interest components.</li>
+                <li>Facilitates reinvestment in modern equipment.</li>
+            </ul>
+            <p><strong>Application Process:</strong></p>
+            <ul>
+                <li>Approach your lender with original loan documents and purchase receipts.</li>
+                <li>Verification will be followed by approval from the waiver committee.</li>
+            </ul>
+            <p><strong>Note:</strong> Applications must be submitted to the concerned bank branch within the given timeline.</p>
+        `;
+        signature.innerHTML = `(Authorized Signatory)<br>Rural Development Loan Authority`;
+    } else {
+        signature.innerHTML = `(Authorized Signatory)<br>Higher Education Financial Authority`;
+    }
+</script>
+
+</body>
+</html>

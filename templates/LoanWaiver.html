@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>Loan Verification System - Loan Waiver</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+         :root {
+            --sidebar-width: 260px;
+            --header-height: 60px;
+            --primary-color: #15295E;
+            --secondary-color: #1C3E94;
+            --accent-color: #C8972C;
+            --text-color: #2D3748;
+            --light-bg: #F8FAFC;
+            --border-color: #E2E8F0;
+        }
+
+        /* Layout */
+        .wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--primary-color);
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .user-info {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+            padding: 10px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-menu {
+            padding: 1rem 0;
+        }
+
+        .sidebar-menu .nav-link {
+            color: rgba(255, 255, 255, 0.9);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            margin: 4px 16px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .sidebar-menu .nav-link:hover,
+        .sidebar-menu .nav-link.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .sidebar-menu .nav-link i {
+            width: 20px;
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+
+
+  .main-content {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            padding: 20px;
+            background: var(--light-bg);
+            min-height: 100vh;
+        }
+        /* Form Card */
+        .form-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-card .form-header {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .form-control {
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            padding: 0.75rem 1rem;
+        }
+
+        .form-control:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 0.25rem rgba(28, 62, 148, 0.25);
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* File Input Styling */
+        .file-input-container {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .file-input-label {
+            display: inline-block;
+            padding: 0.75rem 1rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .file-input-label:hover {
+            background: var(--secondary-color);
+        }
+
+        .file-input-label i {
+            margin-right: 8px;
+        }
+
+        /* Table Styles */
+        .table-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        .table {
+            margin-bottom: 0;
+        }
+
+        .table thead {
+            background: var(--primary-color);
+        }
+
+        .table thead th {
+            color: white;
+            font-weight: 500;
+            padding: 15px;
+            border: none;
+        }
+
+        .table tbody td {
+            padding: 12px 15px;
+            vertical-align: middle;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .btn-remove {
+            color: #DC2626;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        .btn-remove:hover {
+            background: #FEE2E2;
+            color: #991B1B;
+        }
+
+        /* Buttons */
+        .btn-submit {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            border: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-reset {
+            background: #6B7280;
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            border: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            margin-left: 1rem;
+        }
+
+        .btn-reset:hover {
+            background: #4B5563;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Sidebar (Same as previous) -->
+       <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <img src="https://seekvectors.com/files/download/India%20Government-02.jpg" style="width:50px;height:50px;border-radius:50%;"><span class="logo-text">Loan Verification</span>
+                </div>
+            </div>
+
+            <div class="sidebar-menu">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/AdminHome">
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/NewUser">
+                            <i class="fas fa-user-plus"></i>
+                            <span>New User</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/NewLoan">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                            <span>New Loan</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/ALoanInfo">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Loan Info</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/LoanWaiver">
+                            <i class="fas fa-hand-holding-usd"></i>
+                            <span>Loan Waiver</span>
+                        </a>
+                    </li>
+                    <li class="nav-item mt-auto">
+                        <a class="nav-link text-danger" href="/">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="mb-0">Loan Waiver Management</h4>
+                <div class="d-flex align-items-center">
+                    <div class="text-muted me-3">
+                        <i class="far fa-clock me-1"></i>
+                        {{current_time}}
+                    </div>
+                    <div class="text-muted me-3">
+                        <i class="fas fa-user me-1"></i>
+                        {{current_user}}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Breadcrumb -->
+            <div class="breadcrumb-custom mb-4">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="/"><i class="fas fa-home"></i> Home</a>
+                        </li>
+                        <li class="breadcrumb-item active">Loan Waiver</li>
+                    </ol>
+                </nav>
+            </div>
+
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endif %}
+            {% endwith %}
+
+            <!-- Form Card -->
+            <div class="form-card">
+                <div class="form-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-hand-holding-usd me-2"></i>
+                        New Loan Waiver Application
+                    </h5>
+                </div>
+
+                <form action="/Waiver" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Loan Type</label>
+                                <select name="Type" class="form-control" required>
+                                    <option value="" disabled selected>Select Loan Type</option>
+                                    <option value="CropLoan">Crop Loan</option>
+                                    <option value="EducationLoan">Education Loan</option>
+                                    <option value="DisasterLoan">Disaster Loan</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Loan Amount</label>
+                                <input type="text" name="amt" class="form-control" placeholder="Enter loan amount" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Upload Circular</label>
+                        <div class="file-input-container">
+                            <label class="file-input-label">
+                                <i class="fas fa-upload"></i>
+                                Choose File
+                                <input type="file" name="file" class="form-control" required style="display: none;">
+                            </label>
+                            <span class="selected-file ms-2"></span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-submit">
+                            <i class="fas fa-check me-2"></i>Submit
+                        </button>
+                        <button type="reset" class="btn btn-reset">
+                            <i class="fas fa-redo me-2"></i>Reset
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Table Card -->
+            <div class="table-card">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Amount</th>
+                                <th>File</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item1 in data %}
+                            <tr>
+                                <td>{{item1[1]}}</td>
+                                <td>₹{{item1[2]}}</td>
+                                <td>{{item1[3]}}</td>
+                                <td>
+                                    <a href="Remove?lid={{item1[0]}}" class="btn-remove">
+                                        <i class="fas fa-trash me-1"></i>Remove
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="text-center py-3 mt-4">
+                <p class="mb-0">All rights reserved | Design by Loan Verification System</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        // File input handling
+        document.querySelector('input[type="file"]').addEventListener('change', function(e) {
+            let fileName = e.target.files[0].name;
+            document.querySelector('.selected-file').textContent = fileName;
+        });
+
+        // Form validation
+        (function() {
+            'use strict'
+            var forms = document.querySelectorAll('.needs-validation')
+            Array.from(forms).forEach(function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+
+        // Mobile sidebar toggle
+        document.querySelector('.mobile-toggle')?.addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>
